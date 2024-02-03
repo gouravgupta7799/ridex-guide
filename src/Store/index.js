@@ -12,6 +12,11 @@ const counterState = (state = { counter: 0 }, action) => {
       counter: state.counter + 2
     }
   }
+  else if (action.type === 'IncrementBy5') {
+    return {
+      counter: state.counter + 5
+    }
+  }
   else if (action.type === 'DECREMENT') {
     return {
       counter: state.counter - 1
@@ -20,6 +25,11 @@ const counterState = (state = { counter: 0 }, action) => {
   else if (action.type === 'DECREMENTBY2') {
     return {
       counter: state.counter - 2
+    }
+  }
+  else if (action.type === 'Decremenenby5') {
+    return {
+      counter: state.counter - 5
     }
   }
   return state;
