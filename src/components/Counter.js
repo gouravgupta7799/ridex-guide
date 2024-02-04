@@ -1,44 +1,50 @@
+import { counterActions } from '../Store';
 import classes from './Counter.module.css';
 import { useDispatch, useSelector } from 'react-redux'
 
 const Counter = () => {
 
-  const counter = useSelector((state) => state.counter);
   const dispatch = useDispatch()
+  const counter = useSelector((state) => state.counter.counter);
+  const show = useSelector((state) => state.counter.showCounter)
 
   const IncrementHandler = () => {
-    dispatch({ type: 'INCREMENT' });
+    dispatch(counterActions.increment());
   };
 
   const DecrementHandler = () => {
-    dispatch({ type: 'DECREMENT' });
+    dispatch(counterActions.decrement());
 
   };
 
   const IncrementBy2Handler = () => {
-    dispatch({ type: 'INCREMENTBY2' });
+    dispatch(counterActions.incrementby2());
   };
 
   const IncrementBy5Handler = () => {
-    dispatch({ type: 'IncrementBy5' });
+    dispatch(counterActions.incrementby5());
   };
 
   const DecrementBy2Handler = () => {
-    dispatch({ type: 'DECREMENTBY2' });
+    dispatch(counterActions.decrementby2());
   };
 
   const DecrementBy5Handler = () => {
-    dispatch({ type: 'Decremenenby5' });
+    dispatch(counterActions.decrementby5());
   };
 
+  const increaseHandler = () => {
+    dispatch(counterActions.increase(220))
+  }
+
   const toggleCounterHandler = () => {
-    // dispatch(counterActions.toggleCounterHandler())
+    dispatch(counterActions.toggleCounter())
   }
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      {<div className={classes.value}>{counter}</div>}
+      {show && <div className={classes.value}>{counter}</div>}
       <div>
         <button className={classes['btn']} onClick={IncrementHandler}>Increment</button>
         <button className={classes['btn']} onClick={DecrementHandler}>Decrement</button>
@@ -51,6 +57,7 @@ const Counter = () => {
         <button className={classes['btn']} onClick={IncrementBy5Handler}>IncrementBy5</button>
         <button className={classes['btn']} onClick={DecrementBy5Handler}>DecrementBy5</button>
       </div>
+      <button className={classes['btn']} onClick={increaseHandler}>increase</button>
       <button className={classes['btn']} onClick={toggleCounterHandler}>Toggle Counter</button>
     </main>
   );
